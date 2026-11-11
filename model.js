@@ -89,7 +89,7 @@ wall(15,-6,27.5,-6,H,mat.conc,0,-1); wall(15,-6,15,0,H,mat.conc,-1,0);
   [[.52,.6],[.86,.94]].forEach(([a,b])=>{ const p=P(a), q=P(b); wall(p[0],p[1],q[0],q[1],.18,mat.ink,20,9.2,{t:.1,y0:H-.18,cut:false}); });
 })();
 // columns
-[[11,1.2],[22,1.2]].forEach(([x,z])=>box(.9,H,.9,mat.conc,x,H/2,z));
+
 [[8.7,16],[21.3,16]].forEach(([x,z])=>cyl(.5,.5,H,mat.conc,x,H/2,z,28));
 [[29.4,6.6],[27.6,13.4]].forEach(([x,z])=>cyl(.55,.55,H,mat.conc,x,H/2,z,28));
 [[38.3,.1],[38.9,6.6],[39.4,13.1]].forEach(([x,z])=>cyl(.42,.42,H+.6,mat.conc,x,(H+.6)/2,z,24));
