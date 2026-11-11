@@ -456,7 +456,7 @@ figure{margin:0;position:relative}
 // ---------- budget ----------
 (function(){
   const DECK = [
-    {k:'artist', n:'Artist fees', d:'Shena, OMDG +1 and the sound bath host', v:300000, c:'#1F2733'},
+    {k:'artist', n:'Artist fees', d:'Shena, OMDG +1 and the sound bath host', v:200000, c:'#1F2733'},
     {k:'prod', n:'Production', d:'Stage, decor, activity, installation, sound', c:'#9EC3E6', sub:[
       {k:'p1', n:'Stage & DJ booth', v:110000}, {k:'p2', n:'Ceiling decor', v:200000}, {k:'p3', n:'Balcony activities', v:100000},
       {k:'p4', n:'Gate & other setup', v:150000}, {k:'p5', n:'Light & pro sound', v:150000}]},
@@ -466,7 +466,7 @@ figure{margin:0;position:relative}
     {k:'misc', n:'Misc & contingency', d:'A small buffer for the unexpected', v:80000, c:'#D9DEE3'}
   ];
   let data = JSON.parse(JSON.stringify(DECK));
-  try{ const s=localStorage.getItem('wd-budget'); if(s) data=JSON.parse(s); }catch(e){}
+  try{ const s=localStorage.getItem('wd-budget-v2'); if(s) data=JSON.parse(s); }catch(e){}
   const fmt = n => { n=Math.round(n); const s=String(Math.abs(n)); const l3=s.slice(-3), r=s.slice(0,-3); return (n<0?'-':'')+(r? r.replace(/\B(?=(\d{2})+(?!\d))/g,',')+',':'')+l3; };
   const val = c => c.sub ? c.sub.reduce((a,s)=>a+(+s.v||0),0) : (+c.v||0);
   const rows=document.getElementById('b-rows'), bar=document.getElementById('b-bar');
@@ -489,7 +489,7 @@ figure{margin:0;position:relative}
     const prod=val(data.find(c=>c.k==='prod')); document.getElementById('b-prod').textContent= tot? Math.round(prod/tot*100)+'%' : '–';
     data.forEach((c,ci)=>{ const pc=rows.querySelector(`[data-pc="${ci}"]`); if(pc) pc.textContent = tot? Math.round(val(c)/tot*100)+'%' : ''; const cl=rows.querySelector(`[data-calc="${ci}"]`); if(cl) cl.textContent=fmt(val(c)); });
     bar.innerHTML=data.map(c=>`<i title="${c.n}: BDT ${fmt(val(c))}" style="background:${c.c};width:${tot? val(c)/tot*100:0}%"></i>`).join('');
-    try{ localStorage.setItem('wd-budget', JSON.stringify(data)); }catch(e){}
+    try{ localStorage.setItem('wd-budget-v2', JSON.stringify(data)); }catch(e){}
   }
   rows.addEventListener('input',e=>{ const t=e.target; if(t.tagName!=='INPUT') return; const n=+t.value.replace(/[^\d]/g,'')||0; const c=data[+t.dataset.ci]; if(t.dataset.si!==undefined) c.sub[+t.dataset.si].v=n; else c.v=n; update(); });
   rows.addEventListener('focusout',e=>{ const t=e.target; if(t.tagName==='INPUT') t.value=fmt(+t.value.replace(/[^\d]/g,'')||0); });
