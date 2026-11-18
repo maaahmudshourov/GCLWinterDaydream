@@ -28,6 +28,7 @@ nav.top a.nl:hover,nav.top a.nl.on{color:var(--ink);background:#E9E3D8}
 nav.top a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .brand,nav.top a.nl{white-space:nowrap}
 @media (max-width:560px){ nav.top a.nl{padding:6px 6px;font-size:10.5px;letter-spacing:.02em} .brand{font-size:24px} nav.top ul{gap:0} }
+@media (max-width:480px){ nav.top .brand{display:none} nav.top .wrap{justify-content:center} }
 /* type */
 .eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 10px}
 h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5vw,56px);line-height:1.02;margin:0;text-wrap:balance}
@@ -97,8 +98,8 @@ figure{margin:0;position:relative}
 .lineup{margin-top:24px;text-align:center;font-size:14px;color:var(--muted)} .lineup b{color:var(--ink)}
 /* tiles */
 .tiles{display:grid;gap:16px}
-.tiles.five{grid-template-columns:repeat(5,1fr)} .tiles.six{grid-template-columns:repeat(6,1fr)}
-@media (max-width:900px){.tiles.five,.tiles.six{grid-template-columns:repeat(3,1fr)}}
+.tiles.five{grid-template-columns:repeat(5,1fr)} .tiles.four{grid-template-columns:repeat(4,1fr)} .tiles.six{grid-template-columns:repeat(6,1fr)}
+@media (max-width:900px){.tiles.five,.tiles.six{grid-template-columns:repeat(3,1fr)} .tiles.four{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:520px){.tiles.five,.tiles.six{grid-template-columns:repeat(2,1fr)}}
 .tile .ph{aspect-ratio:3/4}
 .tile h3{font-style:italic;font-size:21px;margin-top:12px}
@@ -198,6 +199,7 @@ figure{margin:0;position:relative}
   <div class="wrap">
     <a class="brand" href="#top">Winter Daydream</a>
     <ul>
+      <li><a class="nl" href="#journey">Journey</a></li>
       <li><a class="nl" href="#moodboard">Moodboard</a></li>
       <li><a class="nl" href="#space">3D space</a></li>
       <li><a class="nl" href="#budget">Budget</a></li>
@@ -209,11 +211,266 @@ figure{margin:0;position:relative}
   <img src="cover.webp" alt="Winter Daydream lettering beside an illustrated Gulshan Club postcard and the event seal" width="1800" height="1013">
   <div class="wrap hero-strip">
     <span>Breakfast Club Dhaka × Gulshan Club</span>
-    <span><b>Saturday 5 December 2026</b> · 7AM – 12PM · Crystal Palace</span>
+    <span><b>Friday 11 December 2026 (TBC)</b> · 9AM – 2PM · Above 11, Gulshan Club</span>
   </div>
 </header>
 
 <main>
+<!-- ===== JOURNEY SECTION · paste this whole block into index.html, just above the Budget section ===== -->
+<section class="ch wrap jy" id="journey" aria-labelledby="h-journey">
+<style>
+.jy{--jy-card:#FBFAF7;--jy-line:#ECE6DB;--jy-good:#3F8A5A;--jy-warn:#C46F1C;--jy-c1:#F2A541;--jy-c2:#9EC3E6;--jy-c3:#A9C2A0;--jy-c4:#E3A6A1;--jy-c5:#B9B2DA}
+.jy *{box-sizing:border-box}
+.jy .jy-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.jy .jy-seg{display:inline-flex;background:#E9E3D8;border-radius:999px;padding:3px}
+.jy .jy-seg button{border:0;background:transparent;font:500 13px var(--sans);color:var(--muted);padding:7px 14px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.jy .jy-seg button[aria-pressed=true]{background:var(--jy-card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.jy .jy-seg small{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-left:6px}
+.jy .jy-card{background:var(--jy-card);border:1px solid var(--rule);border-radius:18px;padding:24px}
+.jy .jy-lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.jy .jy-n{width:58px;font:600 14px var(--sans);text-align:right;border:1px solid transparent;border-radius:6px;padding:3px 6px;background:transparent;color:var(--ink);font-variant-numeric:tabular-nums}
+.jy .jy-n:hover{border-color:var(--rule);background:#fff}
+.jy .jy-n:focus{border-color:var(--accent);background:#fff;outline:none}
+.jy .jy-p{display:inline-flex;align-items:center}
+.jy .jy-p::after{content:"%";color:var(--muted);font-size:12px;margin-left:1px}
+.jy .jy-p .jy-n{width:44px}
+/* top: meter + funnel */
+.jy .jy-top{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:16px}
+@media (max-width:900px){.jy .jy-top{grid-template-columns:1fr}}
+.jy .jy-meter{display:grid;gap:16px;align-content:start}
+.jy .jy-big{display:flex;align-items:baseline;gap:10px}
+.jy .jy-big b{font-family:var(--serif);font-weight:400;font-size:clamp(72px,9vw,108px);line-height:.9;font-variant-numeric:tabular-nums}
+.jy .jy-big span{font-size:14px;color:var(--muted)}
+.jy .jy-track{position:relative;height:12px;border-radius:999px;background:var(--jy-line);margin-top:14px}
+.jy .jy-fill{display:flex;height:100%;border-radius:999px;overflow:hidden}
+.jy .jy-fill i{display:block;height:100%;transition:width .4s}
+.jy .jy-goal{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--ink)}
+.jy .jy-goal::after{content:"200";position:absolute;top:-19px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:600}
+.jy .jy-status{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:999px;background:#E3EFE6;color:var(--jy-good);justify-self:start}
+.jy .jy-status.short{background:#F6E6D6;color:var(--jy-warn)}
+.jy .jy-status::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.jy .jy-mini{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule);padding-top:14px}
+.jy .jy-mini b{display:block;font-family:var(--serif);font-weight:400;font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
+.jy .jy-fun{display:grid;align-content:start}
+.jy .jy-fh,.jy .jy-fr{display:grid;grid-template-columns:minmax(0,1fr) 62px 52px 52px 54px;gap:6px;align-items:center}
+.jy .jy-fh{padding-bottom:8px;border-bottom:1px solid var(--rule)}
+.jy .jy-fh span{text-align:right;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.jy .jy-fh span:first-child{text-align:left}
+.jy .jy-fr{padding:10px 0;border-bottom:1px solid var(--jy-line)}
+.jy .jy-fr>span{text-align:right}
+.jy .jy-ch{display:flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px;min-width:0}
+.jy .jy-ch i{width:10px;height:10px;border-radius:3px;flex:none}
+.jy .jy-ch em{font-style:normal;font-weight:400;color:var(--muted);font-size:12.5px;display:block}
+.jy .jy-out{font-family:var(--serif);font-size:24px;line-height:1;text-align:right}
+.jy .jy-fr.ov{color:var(--muted);font-size:13.5px}
+.jy .jy-fr.tot{border-bottom:0;font-weight:600}
+.jy .jy-fr.tot .jy-out{font-size:30px}
+@media (max-width:520px){.jy .jy-fh,.jy .jy-fr{grid-template-columns:minmax(0,1fr) 54px 46px 46px 44px;gap:4px}.jy .jy-ch em{display:none}.jy .jy-n{width:50px}.jy .jy-p .jy-n{width:36px}.jy .jy-card{padding:18px}}
+/* steps */
+.jy .jy-steps{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:56px}
+.jy .jy-steps::before{content:"";position:absolute;left:16px;right:16px;top:15px;height:2px;background:linear-gradient(90deg,var(--jy-c2),var(--jy-c1) 66%,var(--jy-c4))}
+.jy .jy-st{position:relative;display:grid;gap:6px;align-content:start}
+.jy .jy-dot{width:32px;height:32px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);display:grid;place-items:center;font:600 13px var(--sans);position:relative;z-index:1}
+.jy .jy-st.ev .jy-dot{background:var(--jy-c1);border-color:var(--jy-c1)}
+.jy .jy-when{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-top:6px}
+.jy .jy-st h3{font-size:22px}
+.jy .jy-st p{font-size:13.5px;color:var(--muted);line-height:1.4}
+@media (max-width:900px){
+  .jy .jy-steps{grid-template-columns:1fr;gap:0}
+  .jy .jy-steps::before{left:15px;right:auto;top:16px;bottom:16px;width:2px;height:auto;background:linear-gradient(180deg,var(--jy-c2),var(--jy-c1) 66%,var(--jy-c4))}
+  .jy .jy-st{grid-template-columns:32px 1fr;column-gap:16px;padding-bottom:20px}
+  .jy .jy-dot{grid-row:1/4}.jy .jy-when{margin-top:0}
+}
+/* checkpoints */
+.jy .jy-cps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:48px;border:1px solid var(--rule);border-radius:18px;background:var(--jy-card);overflow:hidden}
+.jy .jy-cp{padding:18px;display:grid;gap:8px;align-content:start}
+.jy .jy-cp+.jy-cp{border-left:1px solid var(--rule)}
+.jy .jy-cp.key{background:#F3EEE5}
+.jy .jy-cp h3{font-size:19px}
+.jy .jy-row{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.jy .jy-row .jy-n{width:60px}
+.jy .jy-chip{font-size:11.5px;font-weight:600;justify-self:start;padding:3px 9px;border-radius:999px;background:var(--jy-line);color:var(--muted)}
+.jy .jy-chip.ok{background:#E3EFE6;color:var(--jy-good)}.jy .jy-chip.no{background:#F6E6D6;color:var(--jy-warn)}
+.jy .jy-cp small{font-size:12px;color:var(--muted);line-height:1.35}
+@media (max-width:900px){.jy .jy-cps{grid-template-columns:1fr 1fr}.jy .jy-cp+.jy-cp{border-left:0}.jy .jy-cp{border-top:1px solid var(--rule)}.jy .jy-cp:nth-child(-n+2){border-top:0}.jy .jy-cp:nth-child(even){border-left:1px solid var(--rule)}}
+@media (max-width:520px){.jy .jy-cps{grid-template-columns:1fr}.jy .jy-cp:nth-child(even){border-left:0}.jy .jy-cp:nth-child(2){border-top:1px solid var(--rule)}}
+/* experience */
+.jy .jy-exp{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;margin-top:56px}
+@media (max-width:900px){.jy .jy-exp{grid-template-columns:1fr}}
+.jy .jy-list{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+@media (max-width:520px){.jy .jy-list{grid-template-columns:1fr}}
+.jy .jy-it{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:13px 0;border-top:1px solid var(--rule)}
+.jy .jy-it b{font-family:var(--serif);font-weight:400;font-size:18px;color:var(--muted);line-height:1.2}
+.jy .jy-it strong{display:block;font-size:15px}
+.jy .jy-it span{font-size:13px;color:var(--muted)}
+.jy .jy-music{background:var(--ink);color:var(--paper);border-radius:18px;padding:26px;display:grid;gap:16px;align-content:start}
+.jy .jy-music .jy-lbl{color:#C9C2B6}
+.jy .jy-music .jy-time{font-family:var(--serif);font-size:40px;line-height:1}
+.jy .jy-acts{display:grid}
+.jy .jy-act{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-top:1px solid rgba(244,241,235,.16)}
+.jy .jy-act b{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.05}
+.jy .jy-act span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#C9C2B6;white-space:nowrap}
+.jy .jy-act a{color:var(--paper);text-decoration:none;border-bottom:1px solid rgba(244,241,235,.4)}
+.jy .jy-act a:hover{border-color:var(--paper)}
+/* vote */
+.jy .jy-vote{margin-top:16px;border:1px solid var(--rule);border-radius:18px;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.jy .jy-vote b{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3vw,32px);line-height:1}
+.jy .jy-vote span{font-size:13.5px;color:var(--muted)}
+.jy .jy-foot{margin-top:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.jy .jy-reset{border:0;background:none;font:500 12.5px var(--sans);color:var(--muted);text-decoration:underline;cursor:pointer;padding:0}
+</style>
+
+  <div class="jy-head">
+    <div class="ch-head" style="margin:0"><p class="eyebrow">The guest journey</p><h2 id="h-journey">200 young members. <em>One winter morning.</em></h2></div>
+    <div class="jy-seg" role="group" aria-label="Event date">
+      <button type="button" data-d="a" aria-pressed="true">Fri 11 Dec<small>Recommended</small></button>
+      <button type="button" data-d="b" aria-pressed="false">Wed 16 Dec</button>
+    </div>
+  </div>
+
+  <div class="jy-top">
+    <div class="jy-card jy-meter" aria-live="polite">
+      <p class="jy-lbl">Projected arrivals</p>
+      <div class="jy-big"><b id="jy-arr">0</b><span>of 200 target</span></div>
+      <div class="jy-track"><div class="jy-fill" id="jy-fill"></div><div class="jy-goal" id="jy-goal"></div></div>
+      <span class="jy-status" id="jy-status">On target</span>
+      <div class="jy-mini">
+        <div><b id="jy-rsvp">0</b><span class="jy-lbl">RSVPs</span></div>
+        <div><b id="jy-show">0%</b><span class="jy-lbl">Show-up</span></div>
+        <div><b id="jy-date">11 Dec</b><span class="jy-lbl">Event</span></div>
+      </div>
+    </div>
+    <div class="jy-card jy-fun">
+      <div class="jy-fh"><span>Channel</span><span>Reach</span><span>RSVP</span><span>Show</span><span>Arrive</span></div>
+      <div id="jy-rows"></div>
+    </div>
+  </div>
+
+  <div class="jy-steps" id="jy-steps"></div>
+
+  <div class="jy-cps" id="jy-cps"></div>
+
+  <div class="jy-exp">
+    <div class="jy-card">
+      <p class="jy-lbl" style="margin-bottom:10px">On the day · Above 11</p>
+      <div class="jy-list">
+        <div class="jy-it"><b>01</b><div><strong>Personalised invite</strong><span>Every guest's name, hand-lettered</span></div></div>
+        <div class="jy-it"><b>02</b><div><strong>Welcome drinks</strong><span>A warm cup the moment you arrive</span></div></div>
+        <div class="jy-it"><b>03</b><div><strong>Retro Gamebox</strong><span>Two arcade units by the bar</span></div></div>
+        <div class="jy-it"><b>04</b><div><strong>Art &amp; making</strong><span>Make something to take home</span></div></div>
+        <div class="jy-it"><b>05</b><div><strong>Photobooth</strong><span>Election-themed placards to pose with</span></div></div>
+        <div class="jy-it"><b>06</b><div><strong>Music, 9 AM to 2 PM</strong><span>Five hours on the terrace</span></div></div>
+        <div class="jy-it"><b>07</b><div><strong>Breakfast on the house</strong><span>Curated bites, customised coffee cups</span></div></div>
+      </div>
+    </div>
+    <div class="jy-music">
+      <p class="jy-lbl">Music</p>
+      <p class="jy-time">9 AM – 2 PM</p>
+      <div class="jy-acts">
+        <div class="jy-act"><b>Shena</b><span></span></div>
+        <div class="jy-act"><b>OMDG</b><span></span></div>
+        <div class="jy-act"><b>RCBD</b><span>TBD</span></div>
+        <div class="jy-act"><b><a href="https://www.instagram.com/arina_murrr_" target="_blank" rel="noopener">International guest</a></b><span>Optional</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jy-vote"><b>19 December · Election day</b><span id="jy-run">8 days of content between the event and the vote</span></div>
+  <div class="jy-foot"><span>Numbers with a border on hover are editable and save in this browser.</span><button type="button" class="jy-reset" id="jy-reset">Reset numbers</button></div>
+
+<script>
+(function(){
+var KEY='wd-journey-v2';
+var COL=['var(--jy-c1)','var(--jy-c2)','var(--jy-c3)','var(--jy-c4)','var(--jy-c5)'];
+var DEF={date:'a',ov:10,
+  ch:[{n:'Gift box + invite',s:'Young & millennial members',r:250,a:60,b:75},
+      {n:'Hosts',s:'20 friends and their circles',r:200,a:50,b:70},
+      {n:'Email + calendar',s:'Selected GCL members',r:400,a:10,b:50},
+      {n:'WhatsApp',s:'Community members',r:200,a:15,b:50},
+      {n:'BFC Instagram',s:'20K+ followers',r:300,a:10,b:40}],
+  cp:[{t:100,v:''},{t:180,v:''},{t:250,v:''},{t:300,v:''},{t:200,v:''}]};
+var D={
+  a:{s:'11 Dec',run:'8 days of content between the event and the vote',
+     st:['18–21 Nov','22–24 Nov','25–28 Nov','29 Nov–10 Dec','Fri 11 Dec','12–19 Dec'],
+     cp:['26 Nov','1 Dec','4 Dec','10 Dec','11 Dec']},
+  b:{s:'16 Dec',run:'Only 3 days between the event and the vote',
+     st:['18–24 Nov','25–27 Nov','28 Nov–1 Dec','2–15 Dec','Wed 16 Dec','17–19 Dec'],
+     cp:['29 Nov','6 Dec','9 Dec','15 Dec','16 Dec']}};
+var ST=[['Build the list','Young & millennial members from the voter list; 20 hosts'],
+        ['Tease','“Breakfast Club is taking over Gulshan Club”'],
+        ['Invite drop','Boxes, email, WhatsApp and Instagram on the same day'],
+        ['Confirm','Hosts chase their circles; waitlist at 220'],
+        ['Event day','9 AM to 2 PM at Above 11',1],
+        ['Impact','Recap film, member clips, the Winter Agenda']];
+var CP=[['Day after drop','Host voice notes'],['D–10','Second wave of 50 boxes'],['D–7 · Go/no-go','Story push; +1 member each',1],['D–1','Host calls to unconfirmed'],['Doors','Waitlist fills no-shows',0,1]];
+var S;
+try{S=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){S=null;}
+if(!S||!S.ch||!S.cp)S=JSON.parse(JSON.stringify(DEF));
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function $(i){return document.getElementById(i);}
+function f(n){return Math.round(n).toLocaleString('en-IN');}
+function nu(v){var n=parseFloat(String(v).replace(/[^\d.]/g,''));return isFinite(n)?n:0;}
+function inp(v,a,cls){return '<input class="jy-n" inputmode="decimal" value="'+v+'" '+a+'>';}
+function rows(){
+  var h='';
+  S.ch.forEach(function(c,i){
+    h+='<div class="jy-fr"><div class="jy-ch"><i style="background:'+COL[i]+'"></i><div>'+c.n+'<em>'+c.s+'</em></div></div>'+
+      '<span>'+inp(c.r,'data-k="r" data-i="'+i+'" aria-label="'+c.n+' reach"')+'</span>'+
+      '<span class="jy-p">'+inp(c.a,'data-k="a" data-i="'+i+'" aria-label="'+c.n+' RSVP rate"')+'</span>'+
+      '<span class="jy-p">'+inp(c.b,'data-k="b" data-i="'+i+'" aria-label="'+c.n+' show-up rate"')+'</span>'+
+      '<span class="jy-out" id="jy-a'+i+'"></span></div>';
+  });
+  h+='<div class="jy-fr ov"><div>Overlap between channels</div><span></span><span class="jy-p">'+inp(S.ov,'data-k="ov" aria-label="Overlap"')+'</span><span></span><span class="jy-out" id="jy-ov" style="font-size:16px"></span></div>'+
+     '<div class="jy-fr tot"><div>Total arrivals <em id="jy-tr" style="font-style:normal;font-weight:400;color:var(--muted);font-size:13px"></em></div><span></span><span></span><span></span><span class="jy-out" id="jy-ta"></span></div>';
+  $('jy-rows').innerHTML=h;
+}
+function calc(){
+  var k=1-Math.min(90,S.ov)/100,R=0,A=0,parts=[];
+  S.ch.forEach(function(c,i){var r=c.r*c.a/100,a=r*c.b/100;R+=r;A+=a;parts.push(a);$('jy-a'+i).textContent=f(a);});
+  var Ak=A*k,Rk=R*k;
+  $('jy-ov').textContent='−'+f(A-Ak);$('jy-tr').textContent='· '+f(Rk)+' RSVPs';$('jy-ta').textContent=f(Ak);
+  $('jy-arr').textContent=f(Ak);$('jy-rsvp').textContent=f(Rk);$('jy-show').textContent=R?Math.round(A/R*100)+'%':'–';
+  var sc=Math.max(260,Ak*1.1);
+  $('jy-fill').innerHTML=parts.map(function(a,i){return '<i style="width:'+(a*k/sc*100)+'%;background:'+COL[i]+'"></i>';}).join('');
+  $('jy-goal').style.left=(200/sc*100)+'%';
+  var g=Math.round(Ak-200),s=$('jy-status');
+  if(g>=0){s.className='jy-status';s.textContent=g?'On target · '+g+' to spare':'Exactly on target';}
+  else{s.className='jy-status short';s.textContent='Short by '+(-g);}
+}
+function steps(){
+  var d=D[S.date];
+  $('jy-steps').innerHTML=ST.map(function(x,i){return '<div class="jy-st'+(x[2]?' ev':'')+'"><div class="jy-dot">'+(x[2]?'★':i+1)+'</div><p class="jy-when">'+d.st[i]+'</p><h3>'+x[0]+'</h3><p>'+x[1]+'</p></div>';}).join('');
+  $('jy-cps').innerHTML=CP.map(function(x,i){return '<div class="jy-cp'+(x[2]?' key':'')+'"><p class="jy-when" style="margin:0">'+d.cp[i]+'</p><h3>'+x[0]+'</h3>'+
+    '<div class="jy-row"><span>'+(x[3]?'Target arrivals':'Target RSVPs')+'</span>'+inp(S.cp[i].t,'data-k="t" data-i="'+i+'" aria-label="'+x[0]+' target"')+'</div>'+
+    '<div class="jy-row"><span>Actual</span>'+inp(S.cp[i].v,'data-k="v" data-i="'+i+'" placeholder="–" aria-label="'+x[0]+' actual"')+'</div>'+
+    '<span class="jy-chip" id="jy-c'+i+'">Not yet</span><small>If short: '+x[1]+'</small></div>';}).join('');
+  $('jy-date').textContent=d.s;$('jy-run').textContent=d.run;
+  document.querySelectorAll('.jy-seg button').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-d')===S.date);});
+  chips();
+}
+function chips(){
+  S.cp.forEach(function(c,i){var el=$('jy-c'+i);if(c.v===''){el.className='jy-chip';el.textContent='Not yet';return;}
+    var v=nu(c.v),t=nu(c.t);if(v>=t){el.className='jy-chip ok';el.textContent='On track';}else{el.className='jy-chip no';el.textContent='Short by '+f(t-v);}});
+}
+var root=$('journey');
+root.addEventListener('input',function(e){
+  var t=e.target;if(!t.classList.contains('jy-n'))return;
+  var k=t.getAttribute('data-k'),i=+t.getAttribute('data-i');
+  if(k==='ov')S.ov=nu(t.value);
+  else if(k==='t'){S.cp[i].t=nu(t.value);chips();}
+  else if(k==='v'){S.cp[i].v=t.value.trim()===''?'':nu(t.value);chips();}
+  else S.ch[i][k]=nu(t.value);
+  calc();save();
+});
+root.querySelectorAll('.jy-seg button').forEach(function(b){b.addEventListener('click',function(){S.date=b.getAttribute('data-d');save();steps();});});
+$('jy-reset').addEventListener('click',function(){S=JSON.parse(JSON.stringify(DEF));try{localStorage.removeItem(KEY);}catch(e){}init();});
+function init(){rows();calc();steps();}
+init();
+})();
+</script>
+</section>
+<!-- ===== END JOURNEY SECTION ===== -->
+
 <div id="moodboard">
 <section class="ch wrap" aria-labelledby="h-bfc">
   <div class="ch-head"><p class="eyebrow">Breakfast Club Dhaka</p><h2 id="h-bfc">A cultural platform.</h2></div>
@@ -237,7 +494,7 @@ figure{margin:0;position:relative}
       <p class="lede" style="margin-top:18px;color:var(--ink);font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.3">The club opens its doors for one morning, to welcome winter together and share a good day with the people who matter.</p>
       <div class="six">
         <div><h3>Music</h3><p>Melodic sets that rise with the sun.</p></div>
-        <div><h3>Activity</h3><p>Yoga, lawn games and easels.</p></div>
+        <div><h3>Activity</h3><p>Retro Gamebox, art &amp; making, photobooth.</p></div>
         <div><h3>Slow time</h3><p>A breakfast that lasts as long as you like.</p></div>
         <div><h3>Friends</h3><p>The faces you only catch in December.</p></div>
         <div><h3>Family</h3><p>Every generation, in one room.</p></div>
@@ -269,7 +526,7 @@ figure{margin:0;position:relative}
 
 <section class="ch wrap" aria-labelledby="h-concept">
   <div class="concept">
-    <img src="concept.webp" alt="Colourful mesh clouds hanging over a timber-walled hall with a DJ in front of an LED wall" loading="lazy">
+    <img src="concept.webp" alt="Daytime render of the Above 11 terrace: carved timber DJ frame with a hanging flower canopy, wire mesh backdrop and mesh clouds overhead" loading="lazy">
     <div class="veil"></div>
     <div class="txt"><p class="eyebrow">The concept</p><h2 id="h-concept">Dance as <em>the fog lifts.</em></h2><p style="font-size:17px">Kuasha at nine. Sun by eleven.<br>The music rises with the light.</p></div>
   </div>
@@ -279,22 +536,21 @@ figure{margin:0;position:relative}
   <div class="ch-head"><p class="eyebrow">The morning</p><h2 id="h-morning">Five hours. <em>Haze to sunlight.</em></h2></div>
   <div class="band"><img src="band.webp" alt="Energy curve rising from soft haze to warm sun across the morning" loading="lazy"></div>
   <div class="times">
-    <div><b>7:00</b><strong>Stillness</strong><span>Sound bath on the balcony</span></div>
-    <div><b>9:00</b><strong>Breakfast</strong><span>Shena, slow and warm</span></div>
-    <div><b>10:00</b><strong>Sunlight</strong><span>OMDG lifts the room</span></div>
-    <div><b>11:30</b><strong>The Spectrum</strong><span>Ribbons rise</span></div>
-    <div><b>12:00</b><strong>Home</strong><span>Out by noon</span></div>
+    <div><b>9:00</b><strong>Arrival</strong><span>Welcome drinks, Shena slow and warm</span></div>
+    <div><b>10:00</b><strong>Breakfast</strong><span>Curated bites, on the house</span></div>
+    <div><b>11:00</b><strong>Sunlight</strong><span>OMDG lifts the terrace</span></div>
+    <div><b>12:30</b><strong>The Spectrum</strong><span>The skyline set peaks</span></div>
+    <div><b>2:00</b><strong>Home</strong><span>Out by two</span></div>
   </div>
-  <p class="lineup">On the decks <b>Shena · OMDG</b></p>
+  <p class="lineup">On the decks <b>Shena · OMDG · RCBD</b> (TBD) · International guest (optional)</p>
 </section>
 
 <section class="ch wrap" aria-labelledby="h-play">
-  <div class="ch-head"><p class="eyebrow">The balcony & garden</p><h2 id="h-play">Slow play, <em>all morning.</em></h2></div>
-  <div class="tiles five">
-    <div class="tile"><figure class="ph"><img src="act1.jpg" alt="Cushions and yoga mats under trees" loading="lazy"></figure><h3>Sound bath &amp; yoga</h3><p>Singing bowls, then a gentle flow on mats.</p></div>
+  <div class="ch-head"><p class="eyebrow">Around the terrace</p><h2 id="h-play">Slow play, <em>all morning.</em></h2></div>
+  <div class="tiles four">
     <div class="tile"><figure class="ph"><img src="act2.webp" alt="Giant Jenga game" loading="lazy"></figure><h3>Giant lawn games</h3><p>Jenga and ring toss. Parents against the kids.</p></div>
     <div class="tile"><figure class="ph"><img src="souv.webp" alt="Souvenir merch stand" loading="lazy"></figure><h3>Souvenirs collection</h3><p>A series of merch.</p></div>
-    <div class="tile"><figure class="ph"><img src="act4.webp" alt="Easels on picnic rugs" loading="lazy"></figure><h3>Paint the morning</h3><p>Easels on picnic rugs. Take your canvas home.</p></div>
+    <div class="tile"><figure class="ph"><img src="arcade.webp" alt="Retro arcade cabinet with rainbow stripes and two joysticks" loading="lazy"></figure><h3>Retro Gamebox</h3><p>Two arcade cabinets by the bar. Winner stays on.</p></div>
     <div class="tile"><figure class="ph"><img src="act5.webp" alt="Kids painting a mural" loading="lazy"></figure><h3>Little Dreamers</h3><p>Kids paint wish ribbons for the canopy at 11:30.</p></div>
   </div>
 </section>
@@ -312,6 +568,28 @@ figure{margin:0;position:relative}
   <p class="served"><em>Served by hosts in striped aprons and white gloves.</em> Everything bite-sized, one hand always free for the coffee.</p>
 </section>
 
+<section class="ch wrap" id="giftbox" aria-labelledby="h-gift">
+  <div class="split">
+    <figure><img src="giftbox.webp" alt="Reference: branded gift boxes with a reusable coffee cup, notebook and pen" loading="lazy" style="cursor:zoom-in;border-radius:14px"></figure>
+    <div>
+      <p class="eyebrow">The gift box</p>
+      <h2 id="h-gift">The box is <em>the key to the morning.</em></h2>
+      <p class="lede" style="margin-top:18px">250 boxes, hand-delivered to young and millennial members with their personalised invitation. The pin gets you in; the postcard becomes your Polaroid.</p>
+      <div class="six">
+        <div><h3>Personal invitation</h3><p>Hand-lettered with the member's name and a QR to RSVP.</p></div>
+        <div><h3>Reusable coffee cup</h3><p>Winter Daydream cup, refilled at the coffee bar on the day.</p></div>
+        <div><h3>Enamel pin</h3><p>The entry pass. Wear it to the morning.</p></div>
+        <div><h3>Postcard</h3><p>“The club I want in 2030 is…”, traded for a Polaroid.</p></div>
+        <div><h3>Coffee drip bags</h3><p>Three, from a local specialty roaster.</p></div>
+        <div><h3>Honey or butter cookies</h3><p>A small taste of the breakfast.</p></div>
+        <div><h3>Sticker sheet</h3><p>Cloud, fog gate and Breakfast Club marks.</p></div>
+        <div><h3>Playlist card</h3><p>A QR to the DJ's warm-up mix.</p></div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:14px">Packed in a white box with a fog-gradient sleeve. Costs sit in the budget under Guest experience.</p>
+    </div>
+  </div>
+</section>
+
 <section class="ch wrap" aria-labelledby="h-vs">
   <div class="ch-head"><p class="eyebrow">Visual system</p><h2 id="h-vs">Ink, paper <em>and fog.</em></h2></div>
   <div class="vs">
@@ -324,19 +602,18 @@ figure{margin:0;position:relative}
 
 <div class="space" id="space">
   <section class="wrap" aria-labelledby="h-space">
-    <div class="ch-head"><p class="eyebrow" style="color:var(--marigold)">The space</p><h2 id="h-space">Crystal Palace, <em>in 3D.</em></h2>
-      <p class="lede">Orbit the room, switch the DJ booth, LED wall, ceiling decor, crowd and pixel bars on and off, and flip the balcony between its two time slots.</p></div>
+    <div class="ch-head"><p class="eyebrow" style="color:var(--marigold)">The space</p><h2 id="h-space">Above 11, <em>in 3D.</em></h2>
+      <p class="lede">Orbit the terrace and lounge, switch each placement on and off, and flip from the 9 AM haze to the noon sun.</p></div>
   </section>
   <div id="viewer">
-    <div id="stage" aria-label="3D model of Crystal Palace hall laid out for Winter Daydream"></div>
+    <div id="stage" aria-label="3D model of Above 11 at Gulshan Club laid out for Winter Daydream"></div>
     <aside class="rail">
  <div class="rail-in">
   <div>
     <div class="eyebrow">BFC · Winter Daydream</div>
-    <h1>Crystal Palace 3D</h1>
-    <p class="sub">3D massing of the Winter Daydream layout on the revised base plan of Gulshan Club's new building.</p>
+    <h1>Above 11 3D</h1>
+    <p class="sub">The Winter Daydream layout on the 11th-floor terrace and lounge of Gulshan Club.</p>
   </div>
-
   <section aria-labelledby="h-cam">
     <h2 id="h-cam">Camera</h2>
     <div class="cams" role="group" aria-label="Camera view">
@@ -345,88 +622,80 @@ figure{margin:0;position:relative}
       <button type="button" data-v="floor" aria-pressed="false">Dancefloor</button>
       <button type="button" data-v="entry" aria-pressed="false">From entry</button>
       <button type="button" data-v="dj" aria-pressed="false">DJ's view</button>
-      <button type="button" data-v="balcony" aria-pressed="false">Balcony</button>
+      <button type="button" data-v="lounge" aria-pressed="false">Indoor lounge</button>
     </div>
   </section>
-
   <section aria-labelledby="h-show">
     <h2 id="h-show">Show</h2>
     <div class="checks">
-      <label class="ck" for="t-dj"><input type="checkbox" id="t-dj" checked>DJ booth &amp; table</label>
+      <label class="ck" for="t-dj"><input type="checkbox" id="t-dj" checked>DJ booth &amp; riser</label>
+      <label class="ck" for="t-led"><input type="checkbox" id="t-led" checked>Wire mesh backdrop <span class="tag">city view</span></label>
+      <label class="ck" for="t-flora"><input type="checkbox" id="t-flora" checked>Stage decor <span class="tag">flower canopy</span></label>
       <label class="ck" for="t-crowd"><input type="checkbox" id="t-crowd" checked>Dancing crowd</label>
-      <label class="ck" for="t-ceil"><input type="checkbox" id="t-ceil" checked>Ceiling decor <span class="tag">mesh clouds</span></label>
-      <label class="ck" for="t-bfast"><input type="checkbox" id="t-bfast" checked>Breakfast tables</label>
+      <label class="ck" for="t-ceil"><input type="checkbox" id="t-ceil" checked>Cloud canopy <span class="tag">whole terrace</span></label>
+      <label class="ck" for="t-bfast"><input type="checkbox" id="t-bfast" checked>Long tables &amp; bites</label>
+      <label class="ck" for="t-game"><input type="checkbox" id="t-game" checked>Retro Gamebox ×2</label>
+      <label class="ck" for="t-art"><input type="checkbox" id="t-art" checked>Art &amp; making</label>
+      <label class="ck" for="t-lounge"><input type="checkbox" id="t-lounge" checked>Lounge</label>
       <label class="ck" for="t-photo"><input type="checkbox" id="t-photo" checked>Photobooth</label>
-      <label class="ck" for="t-lab"><input type="checkbox" id="t-lab">Room labels</label>
+      <label class="ck" for="t-lab"><input type="checkbox" id="t-lab">Zone labels</label>
       <label class="ck" for="t-dim"><input type="checkbox" id="t-dim">Dimensions</label>
     </div>
   </section>
-
-  <section aria-labelledby="h-light">
-    <h2 id="h-light">Lighting rig</h2>
-    <div class="checks">
-      <label class="ck" for="t-led"><input type="checkbox" id="t-led" checked>LED wall behind stage</label>
-      <label class="ck" for="t-pix"><input type="checkbox" id="t-pix" checked>RGB pixel bars <span class="tag" id="pix-n">side walls</span></label>
-      <label class="ck" for="t-warm"><input type="checkbox" id="t-warm" checked>Warm strips, stage wall</label>
-      <label class="ck" for="t-wash"><input type="checkbox" id="t-wash" checked>Colour wash over the floor</label>
-    </div>
-  </section>
-
   <section aria-labelledby="h-bal">
-    <h2 id="h-bal">Balcony</h2>
-    <div class="seg" role="group" aria-label="Balcony time slot">
-      <button type="button" data-b="early" aria-pressed="true">7–8 AM</button>
-      <button type="button" data-b="late" aria-pressed="false">After 8:30 AM</button>
+    <h2 id="h-bal">Time of day</h2>
+    <div class="seg" role="group" aria-label="Time of day">
+      <button type="button" data-b="haze" aria-pressed="true">9 AM haze</button>
+      <button type="button" data-b="sun" aria-pressed="false">Noon sun</button>
     </div>
     <p class="read" id="bal-read" style="margin:8px 0 0"></p>
   </section>
-
   <section aria-labelledby="h-adj">
     <h2 id="h-adj">Adjust</h2>
     <div class="adj">
       <label for="r-crowd">Crowd on the dancefloor</label>
-      <input type="range" id="r-crowd" min="0" max="120" step="5" value="100">
+      <input type="range" id="r-crowd" min="0" max="160" step="5" value="140">
       <div class="read" id="crowd-read"></div>
     </div>
     <div class="adj">
-      <label for="r-cloud">Ceiling decor drop</label>
-      <input type="range" id="r-cloud" min="-0.6" max="0.4" step="0.05" value="0">
+      <label for="r-cloud">Cloud canopy drop</label>
+      <input type="range" id="r-cloud" min="-0.4" max="0.4" step="0.05" value="0">
       <div class="read" id="cloud-read"></div>
     </div>
   </section>
-
   <section aria-labelledby="h-spec">
     <h2 id="h-spec">Spec</h2>
     <dl class="spec">
-      <div><dt>Main hall</dt><dd>≈ 36 × 20 m</dd></div>
-      <div><dt>Ceiling height</dt><dd>≈ 4.8 m</dd></div>
-      <div><dt>Dancefloor</dt><dd>≈ 15 × 11 m</dd></div>
-      <div><dt>Breakfast tables</dt><dd>5 × 6 seats</dd></div>
-      <div><dt>RGB pixel bars</dt><dd id="spec-pix">–</dd></div>
-      <div><dt>Balcony, wide end</dt><dd>≈ 15 m</dd></div>
-      <div><dt>Guests</dt><dd>100–150</dd></div>
+      <div><dt>Terrace</dt><dd>≈ 12 × 22 m</dd></div>
+      <div><dt>Indoor lounge</dt><dd>≈ 13.5 × 9.5 m</dd></div>
+      <div><dt>Dancefloor</dt><dd>≈ 10 × 9 m</dd></div>
+      <div><dt>Long tables</dt><dd>2 × 12 seats</dd></div>
+      <div><dt>Hours</dt><dd>9 AM – 2 PM</dd></div>
+      <div><dt>Guests</dt><dd>200</dd></div>
     </dl>
   </section>
-
-  <div class="note">Working concept, not a fabrication drawing. Column, door and glazing positions follow your markup; all sizes are approximate until measured on site.</div>
+  <div class="note">Working concept, not a fabrication drawing. Drawn from the Above 11 sketch and zone plan; all sizes are estimates until measured on site.</div>
  </div>
 </aside>
     <div class="hint3">drag: orbit · right-drag: pan · scroll: zoom</div>
   </div>
 </div>
 
+
+
+
 <section class="ch wrap" id="budget" aria-labelledby="h-budget">
   <div class="ch-head"><p class="eyebrow">Budget</p><h2 id="h-budget">Every taka, <em>accounted for.</em></h2></div>
   <div class="budget">
     <div>
       <div class="btotal" id="b-total">BDT –</div>
-      <p class="bnote">Estimated total for the morning, excluding food and beverage, which is served by the club kitchen.</p>
+      <p class="bnote">Estimated total for the morning, excluding food and beverage (welcome drinks and breakfast), which is served by the club kitchen.</p>
       <div class="bper">
-        <div><span>Per guest at 150</span><b id="b-150">–</b></div>
-        <div><span>Per guest at 100</span><b id="b-100">–</b></div>
-        <div><span>Production share</span><b id="b-prod">–</b></div>
+        <div><span>Per guest at 200</span><b id="b-150">–</b></div>
+        <div><span>Per guest at 150</span><b id="b-100">–</b></div>
+        <div><span>Stage + production share</span><b id="b-prod">–</b></div>
       </div>
-      <p class="bquote">Half the budget goes into production: everything members will see, touch and photograph.</p>
+      <p class="bquote">A third goes into the stage and production, nearly a quarter into the guest experience: the invite in their hands and everything they see, touch and photograph.</p>
     </div>
     <div>
       <div class="bar" id="b-bar" role="img" aria-label="Share of budget by category"></div>
@@ -456,17 +725,22 @@ figure{margin:0;position:relative}
 // ---------- budget ----------
 (function(){
   const DECK = [
-    {k:'artist', n:'Artist fees', d:'Shena, OMDG +1 and the sound bath host', v:200000, c:'#1F2733'},
-    {k:'prod', n:'Production', d:'Stage, decor, activity, installation, sound', c:'#9EC3E6', sub:[
-      {k:'p1', n:'Stage & DJ booth', v:110000}, {k:'p2', n:'Ceiling decor', v:200000}, {k:'p3', n:'Balcony activities', v:100000},
-      {k:'p4', n:'Gate & other setup', v:150000}, {k:'p5', n:'Light & pro sound', v:150000}]},
-    {k:'photo', n:'Photobooth', d:'Merch wall and printed keepsakes', v:80000, c:'#EBC4B8'},
-    {k:'content', n:'Content', d:'Edited photos and a recap film', v:120000, c:'#F2A541'},
+    {k:'artist', n:'Artist fees', d:'Shena, OMDG and RCBD (TBD)', v:200000, c:'#1F2733'},
+    {k:'intl', n:'International guest', d:'Optional; quote pending', v:0, c:'#5A6B85'},
+    {k:'stage', n:'Stage setup', d:'DJ table, riser, wire mesh backdrop, flower canopy', c:'#A9C2A0', sub:[
+      {k:'s1', n:'DJ table', v:25000}, {k:'s2', n:'Riser', v:15000}, {k:'s3', n:'Flower canopy & wire mesh backdrop', v:60000}]},
+    {k:'prod', n:'Production', d:'Decor, activity, installation, sound', c:'#9EC3E6', sub:[
+      {k:'p2', n:'Cloud canopy decor', v:200000}, {k:'p3', n:'Retro Gamebox ×2', v:40000},
+      {k:'p6', n:'Art & making kits', v:40000}, {k:'p4', n:'Gate & signage', v:100000}, {k:'p5', n:'Pro sound', v:80000}]},
+    {k:'photo', n:'Photobooth', d:'Election-themed placards and Polaroid prints', v:80000, c:'#EBC4B8'},
+    {k:'guest', n:'Guest experience', d:'Personalised invites, gift boxes and cups', c:'#B9B2DA', sub:[
+      {k:'g1', n:'Gift boxes + personalised invites (250 × 1,450)', v:362500}, {k:'g2', n:'Customised coffee cups', v:25000}]},
+    {k:'content', n:'Content', d:'Edited photos, recap film and member clips', v:120000, c:'#F2A541'},
     {k:'ops', n:'Ops & management', d:'Team, crew and logistics', v:200000, c:'#CFC4B2'},
     {k:'misc', n:'Misc & contingency', d:'A small buffer for the unexpected', v:80000, c:'#D9DEE3'}
   ];
   let data = JSON.parse(JSON.stringify(DECK));
-  try{ const s=localStorage.getItem('wd-budget-v2'); if(s) data=JSON.parse(s); }catch(e){}
+  try{ const s=localStorage.getItem('wd-budget-v5'); if(s) data=JSON.parse(s); }catch(e){}
   const fmt = n => { n=Math.round(n); const s=String(Math.abs(n)); const l3=s.slice(-3), r=s.slice(0,-3); return (n<0?'-':'')+(r? r.replace(/\B(?=(\d{2})+(?!\d))/g,',')+',':'')+l3; };
   const val = c => c.sub ? c.sub.reduce((a,s)=>a+(+s.v||0),0) : (+c.v||0);
   const rows=document.getElementById('b-rows'), bar=document.getElementById('b-bar');
@@ -484,12 +758,12 @@ figure{margin:0;position:relative}
     const tot=data.reduce((a,c)=>a+val(c),0);
     document.getElementById('b-total').textContent='BDT '+fmt(tot);
     document.getElementById('b-tot2').textContent='BDT '+fmt(tot);
-    document.getElementById('b-150').textContent='BDT '+fmt(tot/150);
-    document.getElementById('b-100').textContent='BDT '+fmt(tot/100);
-    const prod=val(data.find(c=>c.k==='prod')); document.getElementById('b-prod').textContent= tot? Math.round(prod/tot*100)+'%' : '–';
+    document.getElementById('b-150').textContent='BDT '+fmt(tot/200);
+    document.getElementById('b-100').textContent='BDT '+fmt(tot/150);
+    const prod=val(data.find(c=>c.k==='prod'))+val(data.find(c=>c.k==='stage')); document.getElementById('b-prod').textContent= tot? Math.round(prod/tot*100)+'%' : '–';
     data.forEach((c,ci)=>{ const pc=rows.querySelector(`[data-pc="${ci}"]`); if(pc) pc.textContent = tot? Math.round(val(c)/tot*100)+'%' : ''; const cl=rows.querySelector(`[data-calc="${ci}"]`); if(cl) cl.textContent=fmt(val(c)); });
     bar.innerHTML=data.map(c=>`<i title="${c.n}: BDT ${fmt(val(c))}" style="background:${c.c};width:${tot? val(c)/tot*100:0}%"></i>`).join('');
-    try{ localStorage.setItem('wd-budget-v2', JSON.stringify(data)); }catch(e){}
+    try{ localStorage.setItem('wd-budget-v5', JSON.stringify(data)); }catch(e){}
   }
   rows.addEventListener('input',e=>{ const t=e.target; if(t.tagName!=='INPUT') return; const n=+t.value.replace(/[^\d]/g,'')||0; const c=data[+t.dataset.ci]; if(t.dataset.si!==undefined) c.sub[+t.dataset.si].v=n; else c.v=n; update(); });
   rows.addEventListener('focusout',e=>{ const t=e.target; if(t.tagName==='INPUT') t.value=fmt(+t.value.replace(/[^\d]/g,'')||0); });
@@ -499,7 +773,7 @@ figure{margin:0;position:relative}
 // ---------- nav highlight + lightbox ----------
 (function(){
   const links=[...document.querySelectorAll('nav.top a.nl')];
-  const map={moodboard:document.getElementById('moodboard'),space:document.getElementById('space'),budget:document.getElementById('budget')};
+  const map={moodboard:document.getElementById('moodboard'),space:document.getElementById('space'),journey:document.getElementById('journey'),budget:document.getElementById('budget')};
   const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)); } }),{rootMargin:'-45% 0px -50% 0px'});
   Object.values(map).forEach(el=>io.observe(el));
   const lb=document.getElementById('lb'), li=lb.querySelector('img');
