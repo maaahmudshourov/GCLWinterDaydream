@@ -3,7 +3,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=Hurricane&family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one long editorial scroll on cotton paper — moodboard chapters, then a dark full-bleed band for the 3D model, then the live budget */
+/* Layout: one long editorial scroll on cotton paper — moodboard chapters, then a dark full-bleed band for the 3D model */
 :root{
   --paper:#F4F1EB; --card:#FBFAF7; --ink:#1F2733; --muted:#6E6E73; --rule:#DDD7CC; --accent:#C46F1C; --sky:#9EC3E6; --marigold:#F2A541;
   --dark:#100D0B; --dark-ink:#F1EAE1;
@@ -202,7 +202,6 @@ figure{margin:0;position:relative}
       <li><a class="nl" href="#journey">Journey</a></li>
       <li><a class="nl" href="#moodboard">Moodboard</a></li>
       <li><a class="nl" href="#space">3D space</a></li>
-      <li><a class="nl" href="#budget">Budget</a></li>
     </ul>
   </div>
 </nav>
@@ -585,7 +584,7 @@ init();
         <div><h3>Sticker sheet</h3><p>Cloud, fog gate and Breakfast Club marks.</p></div>
         <div><h3>Playlist card</h3><p>A QR to the DJ's warm-up mix.</p></div>
       </div>
-      <p style="font-size:13px;color:var(--muted);margin-top:14px">Packed in a white box with a fog-gradient sleeve. Costs sit in the budget under Guest experience.</p>
+      <p style="font-size:13px;color:var(--muted);margin-top:14px">Packed in a white box with a fog-gradient sleeve. Costs are in the separate budget sheet.</p>
     </div>
   </div>
 </section>
@@ -684,26 +683,7 @@ init();
 
 
 
-<section class="ch wrap" id="budget" aria-labelledby="h-budget">
-  <div class="ch-head"><p class="eyebrow">Budget</p><h2 id="h-budget">Every taka, <em>accounted for.</em></h2></div>
-  <div class="budget">
-    <div>
-      <div class="btotal" id="b-total">BDT –</div>
-      <p class="bnote">Estimated total for the morning, excluding food and beverage (welcome drinks and breakfast), which is served by the club kitchen.</p>
-      <div class="bper">
-        <div><span>Per guest at 200</span><b id="b-150">–</b></div>
-        <div><span>Per guest at 150</span><b id="b-100">–</b></div>
-        <div><span>Stage + production share</span><b id="b-prod">–</b></div>
-      </div>
-      <p class="bquote">A third goes into the stage and production, nearly a quarter into the guest experience: the invite in their hands and everything they see, touch and photograph.</p>
-    </div>
-    <div>
-      <div class="bar" id="b-bar" role="img" aria-label="Share of budget by category"></div>
-      <div class="bscroll"><table class="btable"><tbody id="b-rows"></tbody></table></div>
-      <div class="btns"><button type="button" id="b-reset">Reset to deck figures</button><span>Click any amount to edit it. Totals update as you type.</span></div>
-    </div>
-  </div>
-</section>
+
 </main>
 
 <footer class="close">
@@ -722,58 +702,10 @@ init();
 <div id="lb" hidden><img alt=""></div>
 
 <script>
-// ---------- budget ----------
-(function(){
-  const DECK = [
-    {k:'artist', n:'Artist fees', d:'Shena, OMDG and RCBD (TBD)', v:200000, c:'#1F2733'},
-    {k:'intl', n:'International guest', d:'Optional; quote pending', v:0, c:'#5A6B85'},
-    {k:'stage', n:'Stage setup', d:'DJ table, riser, wire mesh backdrop, flower canopy', c:'#A9C2A0', sub:[
-      {k:'s1', n:'DJ table', v:25000}, {k:'s2', n:'Riser', v:15000}, {k:'s3', n:'Flower canopy & wire mesh backdrop', v:60000}]},
-    {k:'prod', n:'Production', d:'Decor, activity, installation, sound', c:'#9EC3E6', sub:[
-      {k:'p2', n:'Cloud canopy decor', v:200000}, {k:'p3', n:'Retro Gamebox ×2', v:40000},
-      {k:'p6', n:'Art & making kits', v:40000}, {k:'p4', n:'Gate & signage', v:100000}, {k:'p5', n:'Pro sound', v:80000}]},
-    {k:'photo', n:'Photobooth', d:'Election-themed placards and Polaroid prints', v:80000, c:'#EBC4B8'},
-    {k:'guest', n:'Guest experience', d:'Personalised invites, gift boxes and cups', c:'#B9B2DA', sub:[
-      {k:'g1', n:'Gift boxes + personalised invites (250 × 1,450)', v:362500}, {k:'g2', n:'Customised coffee cups', v:25000}]},
-    {k:'content', n:'Content', d:'Edited photos, recap film and member clips', v:120000, c:'#F2A541'},
-    {k:'ops', n:'Ops & management', d:'Team, crew and logistics', v:200000, c:'#CFC4B2'},
-    {k:'misc', n:'Misc & contingency', d:'A small buffer for the unexpected', v:80000, c:'#D9DEE3'}
-  ];
-  let data = JSON.parse(JSON.stringify(DECK));
-  try{ const s=localStorage.getItem('wd-budget-v5'); if(s) data=JSON.parse(s); }catch(e){}
-  const fmt = n => { n=Math.round(n); const s=String(Math.abs(n)); const l3=s.slice(-3), r=s.slice(0,-3); return (n<0?'-':'')+(r? r.replace(/\B(?=(\d{2})+(?!\d))/g,',')+',':'')+l3; };
-  const val = c => c.sub ? c.sub.reduce((a,s)=>a+(+s.v||0),0) : (+c.v||0);
-  const rows=document.getElementById('b-rows'), bar=document.getElementById('b-bar');
-  function render(){
-    let h='';
-    data.forEach((c,ci)=>{
-      h+=`<tr><td class="nm"><i style="background:${c.c}"></i>${c.n}</td><td class="ds">${c.d}</td><td class="pc" data-pc="${ci}"></td><td class="am">`+
-        (c.sub? `<span class="calc" data-calc="${ci}"></span>` : `<input id="b-${c.k}" inputmode="numeric" aria-label="${c.n} amount in BDT" data-ci="${ci}" value="${fmt(c.v)}">`)+`</td></tr>`;
-      if(c.sub) c.sub.forEach((s,si)=>{ h+=`<tr class="sub"><td class="nm">${s.n}</td><td class="ds"></td><td class="pc"></td><td class="am"><input id="b-${s.k}" inputmode="numeric" aria-label="${s.n} amount in BDT" data-ci="${ci}" data-si="${si}" value="${fmt(s.v)}"></td></tr>`; });
-    });
-    h+=`<tr class="tot"><td class="nm">Total</td><td class="ds"></td><td class="pc"></td><td class="am"><span class="calc" id="b-tot2"></span></td></tr>`;
-    rows.innerHTML=h; update();
-  }
-  function update(){
-    const tot=data.reduce((a,c)=>a+val(c),0);
-    document.getElementById('b-total').textContent='BDT '+fmt(tot);
-    document.getElementById('b-tot2').textContent='BDT '+fmt(tot);
-    document.getElementById('b-150').textContent='BDT '+fmt(tot/200);
-    document.getElementById('b-100').textContent='BDT '+fmt(tot/150);
-    const prod=val(data.find(c=>c.k==='prod'))+val(data.find(c=>c.k==='stage')); document.getElementById('b-prod').textContent= tot? Math.round(prod/tot*100)+'%' : '–';
-    data.forEach((c,ci)=>{ const pc=rows.querySelector(`[data-pc="${ci}"]`); if(pc) pc.textContent = tot? Math.round(val(c)/tot*100)+'%' : ''; const cl=rows.querySelector(`[data-calc="${ci}"]`); if(cl) cl.textContent=fmt(val(c)); });
-    bar.innerHTML=data.map(c=>`<i title="${c.n}: BDT ${fmt(val(c))}" style="background:${c.c};width:${tot? val(c)/tot*100:0}%"></i>`).join('');
-    try{ localStorage.setItem('wd-budget-v5', JSON.stringify(data)); }catch(e){}
-  }
-  rows.addEventListener('input',e=>{ const t=e.target; if(t.tagName!=='INPUT') return; const n=+t.value.replace(/[^\d]/g,'')||0; const c=data[+t.dataset.ci]; if(t.dataset.si!==undefined) c.sub[+t.dataset.si].v=n; else c.v=n; update(); });
-  rows.addEventListener('focusout',e=>{ const t=e.target; if(t.tagName==='INPUT') t.value=fmt(+t.value.replace(/[^\d]/g,'')||0); });
-  document.getElementById('b-reset').addEventListener('click',()=>{ data=JSON.parse(JSON.stringify(DECK)); render(); });
-  render();
-})();
 // ---------- nav highlight + lightbox ----------
 (function(){
   const links=[...document.querySelectorAll('nav.top a.nl')];
-  const map={moodboard:document.getElementById('moodboard'),space:document.getElementById('space'),journey:document.getElementById('journey'),budget:document.getElementById('budget')};
+  const map={moodboard:document.getElementById('moodboard'),space:document.getElementById('space'),journey:document.getElementById('journey')};
   const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)); } }),{rootMargin:'-45% 0px -50% 0px'});
   Object.values(map).forEach(el=>io.observe(el));
   const lb=document.getElementById('lb'), li=lb.querySelector('img');
